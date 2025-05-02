@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navbar from './Navbar';
+import { useSound } from './useSound';
 
 const MotionBox = motion(Box);
 
@@ -23,6 +24,7 @@ interface QuizStep {
 }
 
 const REWARD_PER_QUESTION = 147.00;
+const CASH_SOUND_URL = 'https://assets.mixkit.co/active_storage/sfx/2275/2275-preview.mp3';
 
 const quizSteps: QuizStep[] = [
   {
@@ -113,6 +115,7 @@ export default function Quiz() {
   const [answers, setAnswers] = useState<string[]>([]);
   const [wallet, setWallet] = useState(0);
   const toast = useToast();
+  const { play: playCashSound } = useSound(CASH_SOUND_URL);
 
   const totalSteps = quizSteps.length;
   const progress = (currentStep / (totalSteps - 1)) * 100;
@@ -120,12 +123,14 @@ export default function Quiz() {
   const addReward = () => {
     setWallet(prev => {
       const newValue = prev + REWARD_PER_QUESTION;
+      playCashSound();
       toast({
         title: '+ R$ 147,00',
         description: 'Você ganhou uma recompensa!',
         status: 'success',
         duration: 2000,
         position: 'top-right',
+        icon: '💰',
       });
       return newValue;
     });
