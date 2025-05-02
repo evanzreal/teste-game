@@ -156,10 +156,10 @@ export default function Quiz() {
     switch (step.type) {
       case 'welcome':
         return (
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="lg" color="brand.primary">{step.title}</Heading>
-            <Text whiteSpace="pre-line">{step.description}</Text>
-            <Button variant="primary" onClick={() => setCurrentStep(prev => prev + 1)}>
+          <VStack spacing={{ base: 4, md: 6 }} align="center" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }} color="brand.primary">{step.title}</Heading>
+            <Text fontSize={{ base: "sm", md: "md" }} whiteSpace="pre-line">{step.description}</Text>
+            <Button variant="primary" size={{ base: "md", md: "lg" }} onClick={() => setCurrentStep(prev => prev + 1)}>
               Começar a operação
             </Button>
           </VStack>
@@ -167,17 +167,17 @@ export default function Quiz() {
 
       case 'instagram':
         return (
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="lg">{step.title}</Heading>
-            <Text>{step.description}</Text>
+          <VStack spacing={{ base: 4, md: 6 }} align="center" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }}>{step.title}</Heading>
+            <Text fontSize={{ base: "sm", md: "md" }}>{step.description}</Text>
             <Input
               placeholder="Seu Instagram (@seuinstagram)"
               value={instagram}
               onChange={(e) => setInstagram(e.target.value)}
-              size="lg"
-              maxW="400px"
+              size={{ base: "md", md: "lg" }}
+              maxW={{ base: "100%", md: "400px" }}
             />
-            <Button variant="primary" onClick={handleInstagram}>
+            <Button variant="primary" size={{ base: "md", md: "lg" }} onClick={handleInstagram}>
               Continuar
             </Button>
           </VStack>
@@ -185,15 +185,16 @@ export default function Quiz() {
 
       case 'question':
         return (
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="lg">{step.title}</Heading>
-            <Text>{step.description}</Text>
-            <VStack spacing={4} w="100%" maxW="600px">
+          <VStack spacing={{ base: 4, md: 6 }} align="center" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }}>{step.title}</Heading>
+            <Text fontSize={{ base: "sm", md: "md" }}>{step.description}</Text>
+            <VStack spacing={{ base: 3, md: 4 }} w="100%" maxW={{ base: "100%", md: "600px" }}>
               {step.options?.map((option) => (
                 <Button
                   key={option}
                   variant="outline"
                   w="100%"
+                  size={{ base: "md", md: "lg" }}
                   onClick={() => handleAnswer(option)}
                   _hover={{
                     bg: 'brand.primary',
@@ -209,10 +210,14 @@ export default function Quiz() {
 
       case 'result':
         return (
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="lg" color="brand.primary">{step.title}</Heading>
-            <Text>{step.description}</Text>
-            <Button variant="primary" size="lg" onClick={() => setCurrentStep(prev => prev + 1)}>
+          <VStack spacing={{ base: 4, md: 6 }} align="center" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }} color="brand.primary">{step.title}</Heading>
+            <Text fontSize={{ base: "sm", md: "md" }}>{step.description}</Text>
+            <Button 
+              variant="primary" 
+              size={{ base: "md", md: "lg" }}
+              onClick={() => setCurrentStep(prev => prev + 1)}
+            >
               Ver análise completa
             </Button>
           </VStack>
@@ -220,10 +225,10 @@ export default function Quiz() {
 
       case 'thanks':
         return (
-          <VStack spacing={6} align="center" textAlign="center">
-            <Heading size="lg" color="brand.primary">{step.title}</Heading>
-            <Text>{step.description}</Text>
-            <Text fontSize="sm" color="gray.400">
+          <VStack spacing={{ base: 4, md: 6 }} align="center" textAlign="center">
+            <Heading size={{ base: "md", md: "lg" }} color="brand.primary">{step.title}</Heading>
+            <Text fontSize={{ base: "sm", md: "md" }}>{step.description}</Text>
+            <Text fontSize={{ base: "xs", md: "sm" }} color="gray.400">
               Fique de olho na sua DM! 🚀
             </Text>
           </VStack>
@@ -234,14 +239,18 @@ export default function Quiz() {
   return (
     <Box minH="100vh" bg="brand.dark">
       <Navbar wallet={wallet} />
-      <Container maxW="container.md" py={20}>
+      <Container 
+        maxW="container.md" 
+        px={{ base: 4, md: 6 }}
+        py={{ base: 16, md: 20 }}
+      >
         {currentStep > 0 && currentStep < totalSteps - 1 && (
           <Progress
             value={progress}
             size="sm"
             colorScheme="green"
             bg="gray.700"
-            mb={8}
+            mb={{ base: 6, md: 8 }}
             borderRadius="full"
           />
         )}

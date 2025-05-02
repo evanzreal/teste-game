@@ -28,11 +28,11 @@ export default function Navbar({ wallet }: NavbarProps) {
         align="center"
         maxW="container.lg"
         mx="auto"
-        px={4}
-        py={4}
+        px={{ base: 3, md: 4 }}
+        py={{ base: 3, md: 4 }}
       >
         <Text
-          fontSize="2xl"
+          fontSize={{ base: "xl", md: "2xl" }}
           fontWeight="bold"
           bgGradient={`linear(to-r, ${primary}, white)`}
           bgClip="text"
@@ -40,8 +40,8 @@ export default function Navbar({ wallet }: NavbarProps) {
           Pluma
         </Text>
 
-        <HStack spacing={2}>
-          <FaWallet color={primary} size={20} />
+        <HStack spacing={{ base: 1, md: 2 }}>
+          <FaWallet color={primary} size={18} />
           <AnimatePresence mode="wait">
             <MotionText
               key={wallet}
@@ -51,6 +51,7 @@ export default function Navbar({ wallet }: NavbarProps) {
               transition={{ duration: 0.3 }}
               fontWeight="bold"
               color={primary}
+              fontSize={{ base: "sm", md: "md" }}
             >
               R$ {wallet.toLocaleString('pt-BR', { minimumFractionDigits: 2 })}
             </MotionText>
