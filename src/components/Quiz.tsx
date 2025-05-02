@@ -24,7 +24,7 @@ interface QuizStep {
 }
 
 const REWARD_PER_QUESTION = 147.00;
-const CASH_SOUND_URL = 'https://assets.mixkit.co/active_storage/sfx/2275/2275-preview.mp3';
+const CASH_SOUND_URL = 'https://assets.mixkit.co/active_storage/sfx/2001/2001-preview.mp3';
 
 const quizSteps: QuizStep[] = [
   {
