@@ -24,7 +24,7 @@ interface QuizStep {
 }
 
 const REWARD_PER_QUESTION = 147.00;
-const CASH_SOUND_URL = 'https://cdn.pixabay.com/download/audio/2022/03/24/audio_c8c8a73467.mp3?filename=notification-sound-7062.mp3';
+const CASH_SOUND_URL = '/sounds/cash.mp3';
 
 const quizSteps: QuizStep[] = [
   {

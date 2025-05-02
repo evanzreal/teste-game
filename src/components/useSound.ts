@@ -6,6 +6,11 @@ export function useSound(soundUrl: string) {
   useEffect(() => {
     const audio = new Audio(soundUrl);
     audio.preload = 'auto';
+    audio.volume = 0.2; // Volume mais sutil
+    
+    // Pré-carrega o som
+    audio.load();
+    
     audioRef.current = audio;
 
     return () => {
@@ -18,10 +23,21 @@ export function useSound(soundUrl: string) {
 
   const play = useCallback(() => {
     if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-      audioRef.current.play().catch(() => {
-        // Ignora erros de reprodução (comum em mobile)
-      });
+      try {
+        // Reseta o som antes de tocar
+        audioRef.current.currentTime = 0;
+        
+        // Tenta tocar o som
+        const playPromise = audioRef.current.play();
+        
+        if (playPromise !== undefined) {
+          playPromise.catch((error) => {
+            console.error('Erro ao tocar som:', error);
+          });
+        }
+      } catch (error) {
+        console.error('Erro ao tocar som:', error);
+      }
     }
   }, []);
 
